@@ -42,3 +42,13 @@ c.
 Visualize data using charts (e.g., stock levels over time, order trends).
 3.
 Integration: Connect React frontend to Django backend using Axios.
+
+Final Deliverables
+Source Code
+Complete source code in a GitHub repository.
+Documentation
+README file with setup instructions, API details, and project overview.
+Deployed Application
+No deployment needed. But application should be functional on local system.
+Test Cases
+Unit tests for backend APIs and frontend components. Example test cases for major features
