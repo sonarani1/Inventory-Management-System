@@ -14,3 +14,31 @@ Notifications and Alerts
 Notify users about low stock levels or pending orders.
 Technical Requirements: Frontend: React, CSS/Styled Components, Axios/Fetch, React Router.
 Backend: Django, Django REST Framework, PostgreSQL/SQLite, JWT/Session-based authentication.
+
+Development Steps:
+1.
+Backend Development:
+a.
+Create models for User, Product, InventoryLog, and Order.
+b.
+Build CRUD APIs for managing products, inventory logs, and orders.
+c.
+Implement logic to calculate stock levels and generate reports.
+2.
+Frontend Development:
+a.
+Develop components for:
+i.
+Dashboard: Display inventory summaries and order status.
+ii.
+Product Management: Forms to add and update products.
+iii.
+Inventory Logging: Forms to log inventory changes (e.g., stock in/out).
+iv.
+Order Management: Forms to create and update orders.
+b.
+Use React Router for navigation and Axios for API integration.
+c.
+Visualize data using charts (e.g., stock levels over time, order trends).
+3.
+Integration: Connect React frontend to Django backend using Axios.
