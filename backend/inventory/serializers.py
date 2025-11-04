@@ -19,13 +19,11 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         )
         return user
 
-
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'
         read_only_fields = ('user',)
-
 
 class ProductSerializer(serializers.ModelSerializer):
     category_name = serializers.CharField(source='category.name', read_only=True)
@@ -62,4 +60,29 @@ class ProductSerializer(serializers.ModelSerializer):
                 })
         
         return attrs
+    
+
+# Adding serializer on Order
+class OrderSerializer(serializers.ModelSerializer):
+    # It will display product's name
+    product_name = serializers.CharField(source='product.name', read_only=True)
+    # It will display category name of the product
+    product_category_name = serializers.CharField(source='product.category.name', read_only=True)
+    
+    class Meta:
+        model = Order
+        # include all the fields from the order model
+        fields = '__all__'
+
+
+# Adding serializer Inventory
+class InventoryLogSerializer(serializers.ModelSerializer):
+    # display name of the related product
+    product_name = serializers.CharField(source='product.name', read_only=True)
+    # displau sku of the related product
+    product_sku = serializers.CharField(source='product.sku', read_only=True)
+    
+    class Meta:
+        model = InventoryLog
+        fields = '__all__'
 
