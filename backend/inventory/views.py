@@ -60,7 +60,6 @@ def login(request):
         status=status.HTTP_401_UNAUTHORIZED
     )
 
-
 class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
     permission_classes = [IsAuthenticated]
@@ -70,7 +69,6 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-
 
 class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
@@ -92,7 +90,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     
     def perform_create(self, serializer):
         product = serializer.save(user=self.request.user)
-        # Create inventory log entry for the initial quantity
+        # Creating inventory log entry for the initial quantity
         try:
             InventoryLog.objects.create(
                 product=product,
@@ -100,7 +98,6 @@ class ProductViewSet(viewsets.ModelViewSet):
                 quantity=product.quantity if product.quantity > 0 else 0
             )
         except Exception:
-            # If log creation fails, it's not critical - product is still created
             pass
     
     def perform_update(self, serializer):
