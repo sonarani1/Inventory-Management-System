@@ -46,6 +46,14 @@ class ProductSerializer(serializers.ModelSerializer):
         # Get the current user from the context (set in the view)
         user = self.context['request'].user if 'request' in self.context else None
         sku = attrs.get('sku')
+        name = attrs.get('name')
+        # Trim string fields
+        if sku is not None:
+            attrs['sku'] = sku.strip()
+            if attrs['sku'] == '':
+                raise serializers.ValidationError({'sku': 'SKU is required'})
+        if name is not None:
+            attrs['name'] = name.strip()
         
         if user and sku:
             # Check if this SKU already exists for this user
@@ -56,7 +64,7 @@ class ProductSerializer(serializers.ModelSerializer):
             
             if existing.exists():
                 raise serializers.ValidationError({
-                    'sku': f'Product with SKU "{sku}" already exists for your account.'
+                    'sku': 'SKU must be unique for your account.'
                 })
         
         return attrs

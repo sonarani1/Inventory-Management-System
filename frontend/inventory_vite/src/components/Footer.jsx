@@ -2,20 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FooterBar = styled.footer`
-  background: ${p => p.theme.colors.footerBg};
+  background: ${p => p.theme.colors.navbarBg};
   border-top: 1px solid ${p => p.theme.colors.border};
-  padding: 20px 10px;
+  box-shadow: 0 -2px 6px ${p => p.theme.colors.shadow};
+  padding: 14px 24px;
+  margin-top: 30px;
   text-align: center;
-  color: ${p => p.theme.colors.textLight};
+  color: ${p => p.theme.colors.text};
   font-size: 14px;
-  margin-top: 40px;
-  box-shadow: 0 -1px 4px ${p => p.theme.colors.shadow};
+
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 50;
 `;
 
 const Footer = () => {
   return (
     <FooterBar>
-      © {new Date().getFullYear()} Efficient Inventory Management System For Small Business
+      © {new Date().getFullYear()} Efficient Inventory Management System FOr Small Businesses
     </FooterBar>
   );
 };
