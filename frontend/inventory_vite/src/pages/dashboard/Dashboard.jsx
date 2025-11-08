@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import API from "../services/api";
+import API from "../../services/api";
 import styled from "styled-components";
 import {
   LineChart,
@@ -11,7 +11,7 @@ import {
 } from "recharts";
 import Inventory from "./Inventory";
 import DashboardVisualization from "./DashboardVisualization";
-import DashboardNotifications from "./DashboardNotifications";
+import DashboardNotifications from "./DashboardNotification";
 
 // Consistent styling constants
 const SPACING = {

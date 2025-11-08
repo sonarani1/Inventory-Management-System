@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import API from '../services/api';
+import API from '../../services/api';
 import styled from 'styled-components';
 
 const SPACING = {

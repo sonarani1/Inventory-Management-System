@@ -11,7 +11,7 @@ import {
   CartesianGrid,
   Cell,
 } from 'recharts';
-import API from '../services/api';
+import API from '../../services/api';
 
 
 const Section = styled.div`
