@@ -6,7 +6,7 @@ import OrderStatusChart from "./OrderStatusChart";
 
 
 const Page = styled.div`
-  padding: 24px;
+  padding: 50px;
   max-width: 1000px;
   margin: 0 auto;
 `;
