@@ -74,15 +74,38 @@ class OrderSerializer(serializers.ModelSerializer):
         # include all the fields from the order model
         fields = '__all__'
 
+    def validate_quantity(self, value):
+        if value is None or value <= 0:
+            raise serializers.ValidationError('Quantity must be greater than 0')
+        return value
+
+    def validate(self, attrs):
+        # Ensure product belongs to the authenticated user at serializer level too
+        request = self.context.get('request')
+        product = attrs.get('product')
+        quantity = attrs.get('quantity')
+        if request and product and product.user_id != request.user.id:
+            raise serializers.ValidationError({'product': 'You can only create orders for your own products'})
+        
+        if product and quantity is not None and product.quantity < quantity:
+            raise serializers.ValidationError({'quantity': 'Insufficient stock'})
+        return attrs
+
 
 # Adding serializer Inventory
 class InventoryLogSerializer(serializers.ModelSerializer):
     # display name of the related product
     product_name = serializers.CharField(source='product.name', read_only=True)
+    
     # displau sku of the related product
     product_sku = serializers.CharField(source='product.sku', read_only=True)
     
     class Meta:
         model = InventoryLog
         fields = '__all__'
+
+    def validate_quantity(self, value):
+        if value is None or value <= 0:
+            raise serializers.ValidationError('Quantity must be greater than 0')
+        return value
 
